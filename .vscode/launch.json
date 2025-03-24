@@ -1,0 +1,19 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ardour/build/gtk2_ardour/ardour-8.4.0",
+            "preLaunchTask": "Generate launch.env",
+            "envFile": "${workspaceFolder}/launch.env",
+            "cwd": "${cwd}",
+            "MIMode": "gdb",
+            "additionalSOLibSearchPath": "${workspaceFolder}/ardour/build/libs/*",
+        }
+    ]
+}

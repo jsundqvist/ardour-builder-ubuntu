@@ -1,0 +1,87 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+	"name": "Ardour",
+	"build": {
+		"args": {
+			"BASE_IMAGE": "mcr.microsoft.com/vscode/devcontainers/cpp:ubuntu-24.04",
+			"REMOTE_USER": "${localEnv:USER}",
+			"REMOTE_UID": "${localEnv:REMOTE_UID:1000}",
+			"REMOTE_GID": "${localEnv:REMOTE_GID:1000}"
+		},
+		// Sets the run context to one level up instead of the .devcontainer folder.
+		"context": ".",
+		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+		"dockerfile": "Dockerfile"
+
+	},
+	
+	//"runArgs": ["--device=/dev/snd", "--privileged"],
+
+	"mounts": [
+		{
+			"source": "${localEnv:HOME}",
+			"target": "${localEnv:HOME}",
+			"type": "bind"
+		}
+	],
+
+	"remoteUser": "${localEnv:USER}",
+	//"containerUser": "${localEnv:USER}",
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cmake-tools",
+				"ms-vscode.cpptools-extension-pack",
+				"ms-azuretools.vscode-docker"
+			],
+			"settings": {
+				"tasks": {
+					"version": "2.0.0",
+					"tasks": [
+						{
+							"label": "Build",
+							"type": "shell",
+							"command": "./build.sh",
+							"options": {
+							},
+							"problemMatcher": {
+								"base": "$gcc",
+								"fileLocation": [
+									"relative",
+									"${workspaceFolder}/ardour/gtk2_ardour"
+								]
+							},
+							"group": {
+								"kind": "build",
+								"isDefault": true
+							},
+							"presentation": {
+								"revealProblems": "onProblem",
+								"panel": "shared",
+								"focus": true
+							}
+						}
+					]
+				}
+			}
+		}
+	}
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "cat /etc/os-release",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "devcontainer"
+}

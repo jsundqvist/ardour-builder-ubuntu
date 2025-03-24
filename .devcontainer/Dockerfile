@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/vscode/devcontainers/cpp:ubuntu-24.04
+
+RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources && \
+    apt update && apt install -y git python3 python-is-python3
+
+RUN ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime && \
+    DEBIAN_FRONTEND=noninteractive apt build-dep -y --no-install-recommends ardour
+
+RUN groupmod -g 1001 vscode && \
+    usermod -u 1001 -g 1001 vscode
+
+ARG REMOTE_USER
+ARG REMOTE_UID
+ARG REMOTE_GID
+RUN addgroup --gid ${REMOTE_GID} ${REMOTE_USER} && \
+    adduser --disabled-password --uid ${REMOTE_UID} --gid ${REMOTE_GID} ${REMOTE_USER}
+
+ENV HOME=/home/${REMOTE_USER}
+
+USER ${REMOTE_USER}
+
+#RUN apt install -y alsa-utils acl
+#RUN usermod -aG audio $USER
+#RUN setfacl -m u:$USER:rw /dev/snd/*

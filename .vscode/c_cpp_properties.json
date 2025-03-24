@@ -1,0 +1,24 @@
+{
+    "enableConfigurationSquiggles": true,
+    "env": {
+        "MAJOR": "8"
+    },
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/ardour/build/libs/**",
+                "${workspaceFolder}/ardour/libs/**",
+                "${workspaceFolder}/include/**"
+            ],
+            "defines": [
+                "PACKAGE=\"\"",
+                "LOCALEDIR=\"\"",
+                "PROGRAM_NAME=\"Ardour\"",
+                "VERSIONSTRING=\"8.0.0\""
+            ],
+            "cppStandard": "c++11"
+        }
+    ],
+    "version": 4
+}
