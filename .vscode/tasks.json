@@ -43,6 +43,29 @@
         },
         */
         {
+            "label": "Build",
+            "type": "shell",
+            "command": "./build.sh",
+            "options": {
+            },
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/ardour/gtk2_ardour"
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "revealProblems": "onProblem",
+                "panel": "shared",
+                "focus": true
+            }
+        },
+        {
             "label": "Generate launch.env",
             "type": "shell",
             "command": "TOP=ardour; . $TOP/build/gtk2_ardour/ardev_common_waf.sh; UBUNTU_MENUPROXY=''; ARDOUR_INSIDE_GDB=1; printenv > launch.env",

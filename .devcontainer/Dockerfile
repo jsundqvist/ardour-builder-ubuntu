@@ -15,10 +15,11 @@ ARG REMOTE_GID
 RUN addgroup --gid ${REMOTE_GID} ${REMOTE_USER} && \
     adduser --disabled-password --uid ${REMOTE_UID} --gid ${REMOTE_GID} ${REMOTE_USER}
 
+RUN apt-get update && \
+    apt-get install -y sudo && \
+    echo ${REMOTE_USER} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${REMOTE_USER} && \
+    chmod 0440 /etc/sudoers.d/${REMOTE_USER}
+
 ENV HOME=/home/${REMOTE_USER}
 
 USER ${REMOTE_USER}
-
-#RUN apt install -y alsa-utils acl
-#RUN usermod -aG audio $USER
-#RUN setfacl -m u:$USER:rw /dev/snd/*

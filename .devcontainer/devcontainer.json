@@ -16,7 +16,9 @@
 
 	},
 	
-	//"runArgs": ["--device=/dev/snd", "--privileged"],
+	"runArgs": ["--device=/dev/snd"],
+
+	"postCreateCommand": "./setup_alsa.sh",
 
 	"mounts": [
 		{
@@ -36,37 +38,7 @@
 				"ms-vscode.cmake-tools",
 				"ms-vscode.cpptools-extension-pack",
 				"ms-azuretools.vscode-docker"
-			],
-			"settings": {
-				"tasks": {
-					"version": "2.0.0",
-					"tasks": [
-						{
-							"label": "Build",
-							"type": "shell",
-							"command": "./build.sh",
-							"options": {
-							},
-							"problemMatcher": {
-								"base": "$gcc",
-								"fileLocation": [
-									"relative",
-									"${workspaceFolder}/ardour/gtk2_ardour"
-								]
-							},
-							"group": {
-								"kind": "build",
-								"isDefault": true
-							},
-							"presentation": {
-								"revealProblems": "onProblem",
-								"panel": "shared",
-								"focus": true
-							}
-						}
-					]
-				}
-			}
+			]
 		}
 	}
 
