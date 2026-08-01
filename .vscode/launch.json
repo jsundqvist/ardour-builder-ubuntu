@@ -13,7 +13,8 @@
             "envFile": "${workspaceFolder}/launch.env",
             "cwd": "${cwd}",
             "MIMode": "gdb",
-            "additionalSOLibSearchPath": "${workspaceFolder}/ardour/build/libs/*",
+            "miDebuggerPath": "${workspaceFolder}/.vscode/gdb",
+            "additionalSOLibSearchPath": "${workspaceFolder}/ardour/build/libs/*"
         }
     ]
 }
