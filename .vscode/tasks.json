@@ -1,47 +1,6 @@
 {
     "version": "2.0.0",
     "tasks": [
-        /*
-        {
-            "label": "Docker Build",
-            "type": "shell",
-            "command": "docker build --build-arg \"CWD=$PWD\" . -t ardour-builder-ubuntu",
-            "options": {},
-            "problemMatcher": [],
-            "group": {
-                "kind": "build"
-            },
-            "presentation": {
-                "revealProblems": "onProblem",
-                "showReuseMessage": false,
-                "panel": "shared",
-                "clear": true
-            }
-        },
-        {
-            "label": "Ardour Build",
-            "type": "shell",
-            "dependsOn": "Docker Build",
-            "command": "docker run -v \"$PWD:$PWD\" ardour-builder-ubuntu",
-            "options": {},
-            "problemMatcher": {
-                "base": "$gcc",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceFolder}/ardour/gtk2_ardour"
-                ]
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "revealProblems": "onProblem",
-                "panel": "shared",
-                "focus": true
-            }
-        },
-        */
         {
             "label": "Build",
             "type": "shell",
@@ -67,28 +26,6 @@
             "group": {
                 "kind": "build"
             }
-        },
-        /*
-        {
-            "type": "cppbuild",
-            "label": "C/C++: gcc build active file",
-            "command": "/usr/bin/gcc",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build",
-            "detail": "compiler: /usr/bin/gcc"
         }
-            */
     ]
 }

@@ -15,8 +15,7 @@
             "defines": [
                 "PACKAGE=\"\"",
                 "LOCALEDIR=\"\"",
-                "PROGRAM_NAME=\"Ardour\"",
-                "VERSIONSTRING=\"8.0.0\""
+                "PROGRAM_NAME=\"Ardour\""
             ],
             "cppStandard": "c++11"
         }
