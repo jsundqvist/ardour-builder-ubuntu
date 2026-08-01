@@ -11,5 +11,5 @@ ENV CWD=$CWD
 
 COPY build.sh .
 
-USER 1000
+USER vscode
 CMD cd $CWD && /build.sh

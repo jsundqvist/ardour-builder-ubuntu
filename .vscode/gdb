@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+export DEBUGINFOD_URLS=
+exec /usr/bin/gdb "$@"

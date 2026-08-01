@@ -48,13 +48,7 @@
             "command": "./build.sh",
             "options": {
             },
-            "problemMatcher": {
-                "base": "$gcc",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceFolder}/ardour/gtk2_ardour"
-                ]
-            },
+            "problemMatcher": "$gcc",
             "group": {
                 "kind": "build",
                 "isDefault": true

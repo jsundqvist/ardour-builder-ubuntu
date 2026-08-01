@@ -4,10 +4,7 @@
 	"name": "Ardour",
 	"build": {
 		"args": {
-			"BASE_IMAGE": "mcr.microsoft.com/vscode/devcontainers/cpp:ubuntu-24.04",
-			"REMOTE_USER": "${localEnv:USER}",
-			"REMOTE_UID": "${localEnv:REMOTE_UID:1000}",
-			"REMOTE_GID": "${localEnv:REMOTE_GID:1000}"
+			"BASE_IMAGE": "mcr.microsoft.com/vscode/devcontainers/cpp:ubuntu-24.04"
 		},
 		// Sets the run context to one level up instead of the .devcontainer folder.
 		"context": ".",
@@ -16,19 +13,23 @@
 
 	},
 	
-	"runArgs": ["--device=/dev/snd"],
-	"postCreateCommand": "sudo usermod -aG audio $USER && sudo setfacl -m u:$USER:rw /dev/snd/* && sudo chown -R $USER:$USER .",
-/*
+	"runArgs": [
+		"--device=/dev/snd",
+		"--env=DISPLAY=${localEnv:DISPLAY}",
+		"--env=XAUTHORITY=/tmp/.Xauthority",
+		"--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
+		"--volume=${localEnv:XAUTHORITY}:/tmp/.Xauthority:ro"
+	],
+	"postCreateCommand": "sudo usermod -aG audio $USER && sudo setfacl -m u:$USER:rw /dev/snd/*",
 	"mounts": [
 		{
 			"source": "${localEnv:HOME}",
-			"target": "${localEnv:HOME}",
+			"target": "/home/vscode",
 			"type": "bind"
 		}
 	],
-*/ 
-	"remoteUser": "${localEnv:USER}",
-
+	"remoteUser": "vscode",
+	"updateRemoteUserUID": true,
 	"customizations": {
 		"vscode": {
 			"extensions": [
