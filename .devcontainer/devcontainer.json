@@ -17,8 +17,8 @@
 	},
 	
 	"runArgs": ["--device=/dev/snd"],
-	"postCreateCommand": "sudo usermod -aG audio $USER && sudo setfacl -m u:$USER:rw /dev/snd/*",
-
+	"postCreateCommand": "sudo usermod -aG audio $USER && sudo setfacl -m u:$USER:rw /dev/snd/* && sudo chown -R $USER:$USER .",
+/*
 	"mounts": [
 		{
 			"source": "${localEnv:HOME}",
@@ -26,7 +26,7 @@
 			"type": "bind"
 		}
 	],
-
+*/ 
 	"remoteUser": "${localEnv:USER}",
 
 	"customizations": {

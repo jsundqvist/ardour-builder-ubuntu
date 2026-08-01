@@ -9,7 +9,8 @@
             "includePath": [
                 "${workspaceFolder}/ardour/build/libs/**",
                 "${workspaceFolder}/ardour/libs/**",
-                "${workspaceFolder}/include/**"
+                "/usr/include/**",
+                "/usr/lib/x86_64-linux-gnu/**"
             ],
             "defines": [
                 "PACKAGE=\"\"",

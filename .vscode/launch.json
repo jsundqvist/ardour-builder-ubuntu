@@ -13,7 +13,7 @@
             "envFile": "${workspaceFolder}/launch.env",
             "cwd": "${cwd}",
             "MIMode": "gdb",
-            "additionalSOLibSearchPath": "${workspaceFolder}/ardour/build/libs/*",
+            "additionalSOLibSearchPath": "${workspaceFolder}/ardour/build/libs/*"
         }
     ]
 }
