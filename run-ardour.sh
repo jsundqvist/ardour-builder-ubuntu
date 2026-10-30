@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+TOP="$ROOT_DIR/ardour"
+PIPEWIRE_JACK_DIR=/usr/lib/x86_64-linux-gnu/pipewire-0.3/jack
+
+if [[ ! -e "$PIPEWIRE_JACK_DIR/libjack.so.0" ]]; then
+    printf 'PipeWire JACK library not found: %s\n' "$PIPEWIRE_JACK_DIR/libjack.so.0" >&2
+    exit 1
+fi
+
+. "$TOP/build/gtk2_ardour/ardev_common_waf.sh"
+export LD_LIBRARY_PATH="$PIPEWIRE_JACK_DIR:$LD_LIBRARY_PATH"
+export LD_PRELOAD="$PIPEWIRE_JACK_DIR/libjack.so.0${LD_PRELOAD:+:$LD_PRELOAD}"
+export JACK_NO_START_SERVER=1
+
+exec "$TOP/$EXECUTABLE" "$@"

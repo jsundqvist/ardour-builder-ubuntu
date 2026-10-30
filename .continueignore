@@ -1,0 +1,28 @@
+# Prevent git / devcontainer metadata index overhead
+.git/
+.devcontainer/
+.vscode/
+
+# Ignore media files & build artifacts
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+build/
+bin/
+obj/
+
+# Ignore temporary files & env configs
+launch.env
+temp_get_date.py
+*.log
+
+# Force-include critical source directories
+!ardour/
+!include/
