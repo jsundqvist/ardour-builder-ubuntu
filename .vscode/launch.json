@@ -14,7 +14,14 @@
             "cwd": "${cwd}",
             "MIMode": "gdb",
             "miDebuggerPath": "${workspaceFolder}/.vscode/gdb",
-            "additionalSOLibSearchPath": "${workspaceFolder}/ardour/build/libs/*"
+            "additionalSOLibSearchPath": "${workspaceFolder}/ardour/build/libs/*",
+            "setupCommands": [
+                {
+                    "description": "Run Ardour's debug target through the PipeWire JACK environment",
+                    "text": "set exec-wrapper ${workspaceFolder}/.vscode/ardour-exec-wrapper.sh"
+                }
+            ]
         }
     ]
 }
+ 

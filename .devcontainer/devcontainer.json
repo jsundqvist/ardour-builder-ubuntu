@@ -1,43 +1,45 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
-	"name": "Ardour",
-	"build": {
-		"args": {
-			"BASE_IMAGE": "mcr.microsoft.com/vscode/devcontainers/cpp:ubuntu-24.04"
-		},
-		// Sets the run context to one level up instead of the .devcontainer folder.
-		"context": ".",
-		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-		"dockerfile": "Dockerfile"
-
-	},
-	
-	"runArgs": [
-		"--device=/dev/snd",
-		"--env=DISPLAY=${localEnv:DISPLAY}",
-		"--env=XAUTHORITY=/tmp/.Xauthority",
-		"--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
-		"--volume=${localEnv:XAUTHORITY}:/tmp/.Xauthority:ro"
-	],
-	"postCreateCommand": "sudo usermod -aG audio $USER && sudo setfacl -m u:$USER:rw /dev/snd/*",
-	"mounts": [
-		{
-			"source": "${localEnv:HOME}",
-			"target": "/home/vscode",
-			"type": "bind"
-		}
-	],
-	"remoteUser": "vscode",
-	"updateRemoteUserUID": true,
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-vscode.cpptools",
-				"ms-vscode.cmake-tools",
-				"ms-vscode.cpptools-extension-pack",
-				"ms-azuretools.vscode-docker"
-			]
-		}
-	}
+    "name": "Ardour",
+    "build": {
+        "args": {
+            "BASE_IMAGE": "mcr.microsoft.com/vscode/devcontainers/cpp:ubuntu-24.04"
+        },
+        "context": ".",
+        "dockerfile": "Dockerfile"
+    },
+    "runArgs": [
+        "--device=/dev/snd",
+        "-v",
+        "/run/user/1001:/run/user/1001",
+        "--env=DISPLAY=${localEnv:DISPLAY}",
+        "--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
+        "--add-host=host.docker.internal:host-gateway"
+    ],
+    "containerEnv": {
+        "XDG_RUNTIME_DIR": "/run/user/1001",
+        "PIPEWIRE_RUNTIME_DIR": "/run/user/1001",
+        "PULSE_SERVER": "unix:/run/user/1001/pulse/native"
+    },
+    "initializeCommand": "xhost +local: && (pactl list modules | grep -q YouTube_Sink || pactl load-module module-null-sink sink_name=YouTube_Sink sink_properties=device.description=\"YouTube_Sink\")",
+    "postCreateCommand": "sudo usermod -aG audio $USER && sudo setfacl -m u:$USER:rw /dev/snd/*",
+    "mounts": [
+        {
+            "source": "${localEnv:HOME}",
+            "target": "/home/vscode",
+            "type": "bind"
+        }
+    ],
+    "remoteUser": "vscode",
+    "updateRemoteUserUID": true,
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-azuretools.vscode-docker",
+                "Continue.continue"
+            ]
+        }
+    }
 }
