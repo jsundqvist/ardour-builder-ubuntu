@@ -6,7 +6,7 @@ cd "$ROOT_DIR"
 
 if [[ ! -d ardour ]]; then
     git clone https://git.ardour.org/ardour/ardour.git
-    git -C ardour checkout 8.4
+    git -C ardour checkout 8.12
 fi
 
 cd ardour

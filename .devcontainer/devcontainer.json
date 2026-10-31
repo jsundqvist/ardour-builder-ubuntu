@@ -10,15 +10,15 @@
     "runArgs": [
         "--device=/dev/snd",
         "-v",
-        "/run/user/1001:/run/user/1001",
+        "/run/user/${localEnv:UID}:/run/user/${localEnv:UID}",
         "--env=DISPLAY=${localEnv:DISPLAY}",
         "--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
         "--add-host=host.docker.internal:host-gateway"
     ],
     "containerEnv": {
-        "XDG_RUNTIME_DIR": "/run/user/1001",
-        "PIPEWIRE_RUNTIME_DIR": "/run/user/1001",
-        "PULSE_SERVER": "unix:/run/user/1001/pulse/native"
+        "XDG_RUNTIME_DIR": "/run/user/${localEnv:UID}",
+        "PIPEWIRE_RUNTIME_DIR": "/run/user/${localEnv:UID}",
+        "PULSE_SERVER": "unix:/run/user/${localEnv:UID}/pulse/native"
     },
     "initializeCommand": "xhost +local: && (pactl list modules | grep -q YouTube_Sink || pactl load-module module-null-sink sink_name=YouTube_Sink sink_properties=device.description=\"YouTube_Sink\")",
     "postCreateCommand": "sudo usermod -aG audio $USER && sudo setfacl -m u:$USER:rw /dev/snd/*",

@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/ardour/build/gtk2_ardour/ardour-8.4.0",
+            "program": "${workspaceFolder}/ardour/build/gtk2_ardour/ardour-8.12.0",
             "preLaunchTask": "Generate launch.env",
             "envFile": "${workspaceFolder}/launch.env",
             "cwd": "${cwd}",
