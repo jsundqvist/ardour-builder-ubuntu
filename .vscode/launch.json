@@ -8,20 +8,14 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/ardour/build/gtk2_ardour/ardour-8.12.0",
-            "preLaunchTask": "Generate launch.env",
-            "envFile": "${workspaceFolder}/launch.env",
+            "program": "${workspaceFolder}/.vscode/ardour-exec-wrapper.sh",
+            "args": [
+                "${workspaceFolder}/ardour/build/gtk2_ardour/ardour-8.12.0"
+            ],
             "cwd": "${cwd}",
             "MIMode": "gdb",
             "miDebuggerPath": "${workspaceFolder}/.vscode/gdb",
-            "additionalSOLibSearchPath": "${workspaceFolder}/ardour/build/libs/*",
-            "setupCommands": [
-                {
-                    "description": "Run Ardour's debug target through the PipeWire JACK environment",
-                    "text": "set exec-wrapper ${workspaceFolder}/.vscode/ardour-exec-wrapper.sh"
-                }
-            ]
+            "additionalSOLibSearchPath": "${workspaceFolder}/ardour/build/libs/*"
         }
     ]
 }
- 
